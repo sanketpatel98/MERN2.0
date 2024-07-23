@@ -30,11 +30,11 @@ export default function FooterComp() {
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="/about"
+                  href="https://sanketpatel98.github.io/portfolio/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Sanket's Blog
+                  Sanket's Portfolio
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>
@@ -48,12 +48,12 @@ export default function FooterComp() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href="#" target="_blank" rel="noopener noreferrer">
-                  Discord
+                <Footer.Link href="https://www.linkedin.com/in/sanketpatel98/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>
-            <div>
+            {/* <div>
               <Footer.Title title="Legal" />
               <Footer.LinkGroup col>
                 <Footer.Link
@@ -71,7 +71,7 @@ export default function FooterComp() {
                   Terms &amp; Condition
                 </Footer.Link>
               </Footer.LinkGroup>
-            </div>
+            </div> */}
           </div>
         </div>
         <Footer.Divider />
