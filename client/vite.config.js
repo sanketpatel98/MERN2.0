@@ -9,7 +9,7 @@ export default defineConfig({
         // target: 'http://localhost:3000',
         target: 'https://mern-2-0-git-master-sanketpatel98s-projects.vercel.app',
         secure: true,
-        changeOrigin: true
+        // changeOrigin: true
       }
     }
   },
