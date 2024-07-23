@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSucess } from "../redux/user/userSlice";
 import { useEffect, useState } from "react";
+import { debounce } from "lodash";
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -24,6 +25,24 @@ export default function Header() {
     }
   }, [location.search]);
 
+  useEffect(() => {
+    const handleSearch = debounce((term) => {
+      if (term) {
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set("searchTerm", term);
+        const searchQuery = urlParams.toString();
+        console.log(searchQuery);
+        navigate(`/search?${searchQuery}`);
+      }
+    }, 300);
+
+    handleSearch(searchTerm);
+
+    return () => {
+      handleSearch.cancel();
+    };
+  }, [searchTerm, location.search, navigate]);
+
   const handleSignout = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/signout`, {
@@ -40,15 +59,6 @@ export default function Header() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set("searchTerm", searchTerm);
-    const searchQuery = urlParams.toString();
-    console.log(searchQuery);
-    navigate(`/search?${searchQuery}`);
-  };
-
   return (
     <Navbar className="border-b-2">
       <Link
@@ -60,19 +70,19 @@ export default function Header() {
         </span>
         Blog
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <TextInput
-          type='text'
-          placeholder='Search...'
+          type="text"
+          placeholder="Search..."
           rightIcon={AiOutlineSearch}
-          className='hidden lg:inline'
+          className="hidden lg:inline"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      {/* <Button className='w-12 h-10 lg:hidden' color='gray' pill type="submit">
         <AiOutlineSearch />
-      </Button>
+      </Button> */}
 
       <div className="flex gap-2 md:order-2">
         <Button
