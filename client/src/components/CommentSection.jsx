@@ -78,6 +78,7 @@ export default function CommentSection({ postId }) {
         `${import.meta.env.VITE_API_URL}/api/comment/likeComment/${commentId}`,
         {
           method: "PUT",
+          credentials: 'include'
         }
       );
       if (res.ok) {
@@ -118,6 +119,7 @@ export default function CommentSection({ postId }) {
         }/api/comment/deleteComment/${commentId}`,
         {
           method: "DELETE",
+          credentials: 'include'
         }
       );
       if (res.ok) {

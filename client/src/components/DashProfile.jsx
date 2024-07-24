@@ -101,6 +101,7 @@ export default function DashProfile() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -138,6 +139,7 @@ export default function DashProfile() {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/signout`, {
         method: "POST",
+        credentials: 'include'
       });
       const data = await res.json();
       if (!res.ok) {

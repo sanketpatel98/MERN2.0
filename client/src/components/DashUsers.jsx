@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { FaCheck, FaTimes } from 'react-icons/fa'
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
@@ -20,7 +20,10 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/getusers`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/user/getusers`,
+          { credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setUser(data.users);
@@ -39,7 +42,11 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/getusers?startIndex=${startIndex}`);
+      const res = await fetch(
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/user/getusers?startIndex=${startIndex}`, {credentials: 'include'}
+      );
       const data = await res.json();
       if (res.ok) {
         setUser((prev) => [...prev, ...data.users]);
@@ -51,22 +58,25 @@ export default function DashUsers() {
       console.log(error.message);
     }
   };
-const handleDeleteUser = async () => {
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/delete/${userIdToDelete}`,{
-      method: 'DELETE'
-    });
-    const data = await res.json();
-    if (res.ok) {
-      setUser((prev)=>prev.filter((user)=>user._id !== userIdToDelete))
-      setShowModal(false);
-    } else {
-      console.log(data.message);
+  const handleDeleteUser = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/user/delete/${userIdToDelete}`,
+        {
+          method: "DELETE",credentials: 'include'
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setUser((prev) => prev.filter((user) => user._id !== userIdToDelete));
+        setShowModal(false);
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-  } catch (error) {
-    console.log(error.message);
-  }
-}
+  };
   return (
     <div className="table-auto overflow-x-auto md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser.isAdmin && user.length > 0 ? (
@@ -95,7 +105,13 @@ const handleDeleteUser = async () => {
                   </TableCell>
                   <TableCell>{user.username}</TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.isAdmin ? (<FaCheck className="text-green-500"/>) : (<FaTimes className='text-red-500'/>)}</TableCell>
+                  <TableCell>
+                    {user.isAdmin ? (
+                      <FaCheck className="text-green-500" />
+                    ) : (
+                      <FaTimes className="text-red-500" />
+                    )}
+                  </TableCell>
                   <TableCell>
                     <span
                       onClick={() => {

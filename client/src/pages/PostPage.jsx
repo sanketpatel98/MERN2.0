@@ -15,7 +15,9 @@ export default function PostPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/post/getposts?slug=${postSlug}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/post/getposts?slug=${postSlug}`,{credentials: 'include'}
+        );
         const data = await res.json();
         if (!res.ok) {
           setError(true);
@@ -35,20 +37,22 @@ export default function PostPage() {
     fetchPost();
   }, [postSlug]);
 
-  useEffect(()=>{
+  useEffect(() => {
     try {
-      const fetchRecentPosts = async ()=>{
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/post/getposts?limit=3`);
+      const fetchRecentPosts = async () => {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/post/getposts?limit=3`,{credentials: 'include'}
+        );
         const data = await res.json();
         if (res.ok) {
           setReceentPosts(data.posts);
         }
-      }
+      };
       fetchRecentPosts();
     } catch (error) {
       console.log(error.message);
     }
-  },[])
+  }, []);
 
   if (loading) {
     return (
@@ -81,19 +85,19 @@ export default function PostPage() {
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
         <span>{post && (post.content.length / 1000).toFixed(0)} mins read</span>
       </div>
-      <div className="p-3 max-w-2xl mx-auto w-full post-content" dangerouslySetInnerHTML={{__html: post && post.content}}></div>
+      <div
+        className="p-3 max-w-2xl mx-auto w-full post-content"
+        dangerouslySetInnerHTML={{ __html: post && post.content }}
+      ></div>
       <div className="max-w-4xl mx-auto w-full">
         <CallToAction />
       </div>
-      <CommentSection postId={post._id}/>
+      <CommentSection postId={post._id} />
       <div className="flex flex-col justify-center items-center mb-5">
         <h1 className="text-xl mt-5">Recent articles</h1>
         <div className="flex flex-wrap justify-center items-center mb-5 gap-5">
-          {receentPosts && 
-            receentPosts.map((post)=>(
-              <PostCard key={post._id} post={post} />
-            ))
-          }
+          {receentPosts &&
+            receentPosts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>
       </div>
     </main>

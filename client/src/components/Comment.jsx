@@ -29,7 +29,6 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   };
   const handleSave = async () => {
     try {
-      console.log("called");
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/comment/editComment/${comment._id}`, {
         method: "PUT",
         headers: {
@@ -38,6 +37,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
         body: JSON.stringify({
           content: editedComment,
         }),
+        credentials: 'include',
       });
       if (res.ok) {
         setIsEditing(false);
