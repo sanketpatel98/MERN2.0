@@ -60,19 +60,19 @@ export default function Header() {
         </span>
         Blog
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-row">
         <TextInput
           type='text'
           placeholder='Search...'
-          rightIcon={AiOutlineSearch}
           className='hidden lg:inline'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <Button type="submit" className="hidden lg:inline"><AiOutlineSearch /></Button>
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      {/* <Button className='w-12 h-10 lg:hidden' color='gray' pill>
         <AiOutlineSearch />
-      </Button>
+      </Button> */}
 
       <div className="flex gap-2 md:order-2">
         <Button
