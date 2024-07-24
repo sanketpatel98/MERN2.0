@@ -55,6 +55,7 @@ export default function CommentSection({ postId }) {
             postId,
             userId: currentUser._id,
           }),
+          credentials: 'include',
         }
       );
       const data = await res.json();
