@@ -26,6 +26,7 @@ const corsConfig = {
     origin: "https://mern-2-0-jhwx.vercel.app",
 };
 app.use(cors(corsConfig));
+app.options('*', cors(corsConfig)); // Handle preflight requests
 
 app.use(express.json());
 app.use(cookieParser());
