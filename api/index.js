@@ -27,7 +27,7 @@ const app = express();
 // app.use(cors());
 const corsConfig = {
     credentials: true,
-    origin: true,
+    origin: "https://mern-2-0-jhwx.vercel.app/",
 };
 app.use(cors(corsConfig));
 
