@@ -24,9 +24,10 @@ const app = express();
 const corsConfig = {
     credentials: true,
     origin: "https://mern-2-0-jhwx.vercel.app",
+    // origin: "http://localhost:5173"
 };
 app.use(cors(corsConfig));
-app.options('*', cors(corsConfig)); // Handle preflight requests
+// app.options('*', cors(corsConfig)); // Handle preflight requests
 
 app.use(express.json());
 app.use(cookieParser());
