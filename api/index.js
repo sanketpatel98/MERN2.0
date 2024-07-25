@@ -27,6 +27,18 @@ const corsConfig = {
     // origin: "http://localhost:5173"
 };
 app.use(cors(corsConfig));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://mern-2-0-jhwx.vercel.app');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');   
+
+  next();
+});
+
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.send();
+});
 // app.options('*', cors(corsConfig)); // Handle preflight requests
 
 app.use(express.json());
