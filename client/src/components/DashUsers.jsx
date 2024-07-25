@@ -21,9 +21,7 @@ export default function DashUsers() {
     const fetchUsers = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/user/getusers`,
-          { credentials: "include" }
-        );
+          `${import.meta.env.VITE_API_URL}/api/user/getusers`);
         const data = await res.json();
         if (res.ok) {
           setUser(data.users);
@@ -45,7 +43,7 @@ export default function DashUsers() {
       const res = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/api/user/getusers?startIndex=${startIndex}`, {credentials: 'include'}
+        }/api/user/getusers?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {

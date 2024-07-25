@@ -14,9 +14,7 @@ export default function DashComments() {
     const fetchComments = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/comment/getcomments`, {
-            credentials: 'include'
-          }
+          `${import.meta.env.VITE_API_URL}/api/comment/getcomments`
         );
         const data = await res.json();
         if (res.ok) {
@@ -40,9 +38,7 @@ export default function DashComments() {
       const res = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/api/comment/getcomments?startIndex=${startIndex}`, {
-          credentials: 'include'
-        }
+        }/api/comment/getcomments?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {

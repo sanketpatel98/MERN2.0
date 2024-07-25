@@ -23,7 +23,7 @@ export default function DashPosts() {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/api/post/getposts?userId=${
             currentUser._id
-          }`,{credentials: 'include'}
+          }`
         );
         const data = await res.json();
         if (res.ok) {
@@ -46,7 +46,7 @@ export default function DashPosts() {
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/post/getposts?userId=${
           currentUser._id
-        }&startIndex=${startIndex}`,{credentials: 'include'}
+        }&startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {

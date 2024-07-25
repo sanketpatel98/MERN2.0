@@ -36,7 +36,7 @@ export default function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/post/getposts?${searchQuery}`,{credentials: 'include'}
+        `${import.meta.env.VITE_API_URL}/api/post/getposts?${searchQuery}`
       );
       if (!res.ok) {
         setLoading(false);
@@ -87,7 +87,7 @@ export default function Search() {
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/post/getposts?${searchQuery}`,{credentials: 'include'}
+      `${import.meta.env.VITE_API_URL}/api/post/getposts?${searchQuery}`
     );
     if (!res.ok) {
       return;
