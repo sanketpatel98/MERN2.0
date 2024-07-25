@@ -1,13 +1,12 @@
 import { Footer } from "flowbite-react";
 import React from "react";
-import { Link } from "react-router-dom";
 import {
-  BsDribbble,
-  BsFacebook,
   BsGithub,
   BsInstagram,
-  BsTwitter,
+  BsLinkedin,
+  BsMailbox
 } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function FooterComp() {
   return (
@@ -39,7 +38,7 @@ export default function FooterComp() {
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title="Follow us" />
+              <Footer.Title title="Follow Me" />
               <Footer.LinkGroup col>
                 <Footer.Link
                   href="https://github.com/sanketpatel98"
@@ -82,11 +81,10 @@ export default function FooterComp() {
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="#" icon={BsGithub} />
-            <Footer.Icon href="#" icon={BsDribbble} />
+            <Footer.Icon href="https://www.instagram.com/_patel_sanket_/" icon={BsInstagram} />
+            <Footer.Icon href="https://www.linkedin.com/in/sanketpatel98/" icon={BsLinkedin} />
+            <Footer.Icon href="https://github.com/sanketpatel98" icon={BsGithub} />
+            <Footer.Icon href="mailto:patelsanketr98@gmail.com" icon={BsMailbox} />
           </div>
         </div>
       </div>
