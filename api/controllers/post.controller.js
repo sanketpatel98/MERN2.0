@@ -35,7 +35,7 @@ export const getPosts = async (req, res, next) => {
     if (req.query.sort && req.query.sort.toString() == "asc" ) {
       sortDirection = 1
     } else {
-      sortDirection = 0;
+      sortDirection = -1;
     }
 
     const posts = await Post.find({
