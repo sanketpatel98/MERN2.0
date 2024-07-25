@@ -122,8 +122,12 @@ export default function DashProfile() {
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
       });
       const data = await res.json();
       if (!res.ok) {
