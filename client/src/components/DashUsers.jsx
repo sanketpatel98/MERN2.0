@@ -21,7 +21,7 @@ export default function DashUsers() {
     const fetchUsers = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/user/getusers`);
+          `${import.meta.env.VITE_API_URL}/api/user/getusers`,{credentials:'include'});
         const data = await res.json();
         if (res.ok) {
           setUser(data.users);
