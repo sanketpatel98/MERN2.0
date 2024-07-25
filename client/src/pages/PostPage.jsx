@@ -49,7 +49,13 @@ export default function PostPage() {
       const fetchRecentPosts = async () => {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/api/post/getposts?limit=3`,
-          { credentials: "include" }
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
         const data = await res.json();
         if (res.ok) {
