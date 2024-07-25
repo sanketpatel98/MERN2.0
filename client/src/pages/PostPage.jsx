@@ -16,7 +16,14 @@ export default function PostPage() {
       try {
         setLoading(true);
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/post/getposts?slug=${postSlug}`,{credentials: 'include'}
+          `${import.meta.env.VITE_API_URL}/api/post/getposts?slug=${postSlug}`,
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
         const data = await res.json();
         if (!res.ok) {
@@ -41,7 +48,8 @@ export default function PostPage() {
     try {
       const fetchRecentPosts = async () => {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/post/getposts?limit=3`,{credentials: 'include'}
+          `${import.meta.env.VITE_API_URL}/api/post/getposts?limit=3`,
+          { credentials: "include" }
         );
         const data = await res.json();
         if (res.ok) {
